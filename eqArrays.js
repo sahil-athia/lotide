@@ -9,6 +9,10 @@ const assertEqual = function(actual, expected) {
 const eqArrays = function(array1, array2) {
   let arrayMatch = false;
   if (array1.length === array2.length) {
+    if (array1.length === 0 && array2.length === 0) {
+      arrayMatch = true;
+      return arrayMatch;
+    } 
     for (let i = 0; i < array1.length; i++) {
     //iterate through array
       if (array1[i] === array2[i]) {
@@ -28,7 +32,7 @@ const eqArrays = function(array1, array2) {
 };
 
 // TESTS
-// assertEqual(eqArrays(["hi", 2, "3"], ["hi", 2, "03"]), true);
+// assertEqual(eqArrays([], []), true);
 // console.log(eqArrays([1, 2, 3], [1, 2, 3]));
 // console.log(eqArrays([1, 2, 3], [3, 2, 1]));
 // console.log(eqArrays(["1", "2", "3"], ["1", "2", "3"]));
