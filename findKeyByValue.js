@@ -10,7 +10,6 @@ const findKeyByValue = function(object, value) {
   for (let i in object) {
     // loop through the key names
     if (object[i] === value){
-      console.log()
       return i;
       //return the matching key
     } 
