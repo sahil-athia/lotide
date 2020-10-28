@@ -21,6 +21,7 @@ const eqObjects = function(object1, object2) {
 
 const assertFunctionsEqual = function(actual, expected) {
   const inspect = require("util").inspect;
+  //ensure that the actual object is printed
   let outcome = eqObjects(actual, expected);
   if (outcome === true) {
     console.log(`✅✅✅ Assertation Passed: ${inspect(actual)} === ${inspect(expected)}`);
