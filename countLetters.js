@@ -14,11 +14,11 @@ const countLetters = function(letters) {
     // loop through each of the letters in out string
     if (letter !== " ") {
     // ignore any blank spaces
-      if (lettersObj[letter]) {
-        lettersObj[letter] += 1;
+      if (lettersObj[letter.toLowerCase()]) {
+        lettersObj[letter.toLowerCase()] += 1;
         // if the letter exists in our object, add a number
       } else {
-        lettersObj[letter] = 1;
+        lettersObj[letter.toLowerCase()] = 1;
         // if the letter does not exit in object, add it 
       }
     }
@@ -28,4 +28,4 @@ const countLetters = function(letters) {
 };
 
 // TEST : 
-// console.log(countLetters("hello"));
+// console.log(countLetters("h e  H ll hue GGG iubviuwb o"));
