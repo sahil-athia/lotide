@@ -23,29 +23,13 @@ const eqArrays = function(array1, array2) {
   return arrayMatch;
 };
 
-const assertArraysEqual = function(array1, array2) {
-  let arrayMatch = `❌❌❌ Assertation Failed: ${array1} !== ${array2}`;
-  if (array1.length === array2.length) {
-    if (array1.length === 0 && array2.length === 0) {
-      arrayMatch = `✅✅✅ Assertation Passed: ${array1} === ${array2}`;
-      return console.log(arrayMatch);
-    }
-    for (let i = 0; i < array1.length; i++) {
-    //iterate through array
-      if (array1[i] === array2[i]) {
-        //strict equals operator
-        arrayMatch = `✅✅✅ Assertation Passed: ${array1} === ${array2}`;
-      } else {
-        arrayMatch = `❌❌❌ Assertation Failed: ${array1} !== ${array2}`;
-        return console.log(arrayMatch);
-        //return fail at first mismatch
-      }
-    }
+const assertArraysEqual = function(actual, expected) {
+  let outcome = eqArrays(actual, expected);
+  if (outcome === true) {
+    console.log(`✅✅✅ Assertation Passed: ${(actual)} is equal to ${(expected)}`);
   } else {
-    return console.log(arrayMatch);
-    //return fail if array lengths are different
+    console.log(`❌❌❌ Assertation Failed: ${(actual)} is not equal ${(expected)}`);
   }
-  return console.log(arrayMatch);
 };
 
 const flatten = function (array) {

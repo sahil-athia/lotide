@@ -1,4 +1,3 @@
-
 const eqArrays = function(array1, array2) {
   let arrayMatch = false;
   if (array1.length === array2.length) {
@@ -34,7 +33,7 @@ const assertArraysEqual = function(actual, expected) {
 };
 
 const map = function(array, callback) {
-  const results = [];
+  let results = [];
   for (let item of array) {
     results.push(callback(item));
   }
