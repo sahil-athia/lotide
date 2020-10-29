@@ -4,7 +4,7 @@ const eqArrays = function(array1, array2) {
     if (array1.length === 0 && array2.length === 0) {
       arrayMatch = true;
       return arrayMatch;
-    } 
+    }
     for (let i = 0; i < array1.length; i++) {
     //iterate through array
       if (array1[i] === array2[i]) {
@@ -39,12 +39,12 @@ const takeUntil = function(array, callback) {
     // only pass when the callback is not truthy
     result.push(array[i]);
     // add the correct element to the result array
-    i++
+    i++;
     // incrementation counter
   }
   return result;
   // return the completed array
-}
+};
 
 // TESTS
 // const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
@@ -66,4 +66,4 @@ const takeUntil = function(array, callback) {
 // console.log(results6);
 // console.log(results7);
 
-// assertArraysEqual(results1, [1, 2, 5, 7, 2])
+// assertArraysEqual(results1, [1, 2, 5, 7, 2]);
