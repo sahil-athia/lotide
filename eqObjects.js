@@ -40,6 +40,9 @@ const eqObjects = function(object1, object2) {
       if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
         final = eqArrays(object1[key], object2[key]);
         //check to see if the key-values are arrays and pass to eqArrays
+      } else if (typeof object1[key] === "object" && typeof object2[key] === "object") {
+        return eqObjects(object1[key], object2[key])
+        // loop trough nested objects until no longer nested
       } else if (object1[key] === object2[key]) {
         final = true;
         // if the key-values are not arrays but still the same, pass true to the outcome
@@ -55,7 +58,10 @@ const eqObjects = function(object1, object2) {
   }
 };
 
-
+// assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true)
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }))
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }))
+// console.log(eqObjects({ a: { y: 0, z: {e:1}}, b: 2 }, { a: {y: 0, z: {e:1}}, b: 2 }))
 // TESTS
 // const ab = { a: "1", b: "2" };
 // const ba = { b: "2", a: "1" };
