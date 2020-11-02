@@ -29,5 +29,6 @@ const assertFunctionsEqual = function(actual, expected) {
     console.log(`❌❌❌ Assertation Failed: ${inspect(actual)} is not equal ${inspect(expected)}`);
   }
 };
+module.exports = assertFunctionsEqual;
 
 //assertFunctionsEqual({1: "a", 2: "b"}, {1: "a", 2: "b"})

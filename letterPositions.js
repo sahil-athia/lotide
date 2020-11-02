@@ -1,26 +1,35 @@
 const eqArrays = function(array1, array2) {
-  let arrayMatch = false;
-  if (array1.length === array2.length) {
-    if (array1.length === 0 && array2.length === 0) {
-      arrayMatch = true;
-      return arrayMatch;
-    } 
-    for (let i = 0; i < array1.length; i++) {
-    //iterate through array
-      if (array1[i] === array2[i]) {
-        //strict equals operator
-        arrayMatch = true;
-      } else {
-        arrayMatch = false;
-        return arrayMatch;
-        //return false at first mismatch
+  let trueTally = false;
+  if (!array1.length && !array2.length) {
+    return true;
+    // return true for 2 empty arrays
+  } else if (array1.length !== array2.length) {
+    return false;
+    // return false for arrays of different length
+  }
+  for (let i of array1) {
+    let j = array2[array1.indexOf(i)];
+    if ((Array.isArray(i) && !Array.isArray(j)) || (!Array.isArray(i) && Array.isArray(j))) {
+      // if one element is an array but one is not, return false
+      return false;
+    }
+    if (Array.isArray(i) && Array.isArray(j)) {
+      if (eqArrays(i, j)) {
+        trueTally = true;
+        //add true if assertion for the two arrays are true
+      } else if (i !== j) {
+        return false;
       }
     }
-  } else {
-    return arrayMatch;
-    //return false if array lengths are different
+    if (array1[i] === array2[j]) {
+      // strict equals to compare elements
+      trueTally = true;
+    } else {
+      return false;
+      // return false at first instance of mismatch
+    }
   }
-  return arrayMatch;
+  return trueTally;
 };
 
 const assertArraysEqual = function(actual, expected) {
@@ -39,20 +48,22 @@ const letterPositions = function(sentance) {
   for (let i = 0; i < sentance.length; i++) {
     if (sentance[i] !== " ") {
       // ignore spaces
-      if (results[sentance[i]]){
-        results[sentance[i]].push(i)
+      if (results[sentance[i]]) {
+        results[sentance[i]].push(i);
         //push the index of letters that are already in the object
       } else {
-        results[sentance[i]] = []
+        results[sentance[i]] = [];
         //create an array for letters not in the object
-        results[sentance[i]].push(i)
+        results[sentance[i]].push(i);
       }
     }
   }
   return results;
 };
 
-console.log(letterPositions("hello"))
-console.log(letterPositions("lighthouse in the house"))
-assertArraysEqual(letterPositions("hello").e, [1])
-assertArraysEqual(letterPositions("lighthouse in the house").h, [3, 5, 15, 18])
+module.exports = letterPositions;
+
+// console.log(letterPositions("hello"))
+// console.log(letterPositions("lighthouse in the house"))
+// assertArraysEqual(letterPositions("hello").e, [1])
+// assertArraysEqual(letterPositions("lighthouse in the house").h, [3, 5, 15, 18])

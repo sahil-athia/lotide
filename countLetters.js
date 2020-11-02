@@ -19,13 +19,13 @@ const countLetters = function(letters) {
         // if the letter exists in our object, add a number
       } else {
         lettersObj[letter.toLowerCase()] = 1;
-        // if the letter does not exit in object, add it 
+        // if the letter does not exit in object, add it
       }
     }
   }
   return lettersObj;
   // return our object
 };
-
-// TEST : 
+module.exports = countLetters;
+// TEST :
 // console.log(countLetters("h e  H ll hue GGG iubviuwb o"));

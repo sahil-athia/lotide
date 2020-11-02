@@ -9,17 +9,19 @@ const assertEqual = function(actual, expected) {
 const findKeyByValue = function(object, value) {
   for (let i in object) {
     // loop through the key names
-    if (object[i] === value){
+    if (object[i] === value) {
       return i;
       //return the matching key
-    } 
+    }
   }
   return undefined;
   // in no matches, retunr undefined
 };
 
+module.exports = findKeyByValue;
+
 // Tests
-// const bestTVShowsByGenre = { 
+// const bestTVShowsByGenre = {
 //   sci_fi: "The Expanse",
 //   comedy: "Brooklyn Nine-Nine",
 //   drama:  "The Wire"

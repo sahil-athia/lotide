@@ -7,28 +7,37 @@ const assertEqual = function(actual, expected) {
 };
 
 const eqArrays = function(array1, array2) {
-  let arrayMatch = false;
-  if (array1.length === array2.length) {
-    if (array1.length === 0 && array2.length === 0) {
-      arrayMatch = true;
-      return arrayMatch;
+  let trueTally = false;
+  if (!array1.length && !array2.length) {
+    return true;
+    // return true for 2 empty arrays
+  } else if (array1.length !== array2.length) {
+    return false;
+    // return false for arrays of different length
+  }
+  for (let i of array1) {
+    let j = array2[array1.indexOf(i)];
+    if ((Array.isArray(i) && !Array.isArray(j)) || (!Array.isArray(i) && Array.isArray(j))) {
+      // if one element is an array but one is not, return false
+      return false;
     }
-    for (let i = 0; i < array1.length; i++) {
-    //iterate through array
-      if (array1[i] === array2[i]) {
-        //strict equals operator
-        arrayMatch = true;
-      } else {
-        arrayMatch = false;
-        return arrayMatch;
-        //return false at first mismatch
+    if (Array.isArray(i) && Array.isArray(j)) {
+      if (eqArrays(i, j)) {
+        trueTally = true;
+        //add true if assertion for the two arrays are true
+      } else if (i !== j) {
+        return false;
       }
     }
-  } else {
-    return arrayMatch;
-    //return false if array lengths are different
+    if (array1[i] === array2[j]) {
+      // strict equals to compare elements
+      trueTally = true;
+    } else {
+      return false;
+      // return false at first instance of mismatch
+    }
   }
-  return arrayMatch;
+  return trueTally;
 };
 
 const eqObjects = function(object1, object2) {
@@ -41,7 +50,7 @@ const eqObjects = function(object1, object2) {
         final = eqArrays(object1[key], object2[key]);
         //check to see if the key-values are arrays and pass to eqArrays
       } else if (typeof object1[key] === "object" && typeof object2[key] === "object") {
-        return eqObjects(object1[key], object2[key])
+        return eqObjects(object1[key], object2[key]);
         // loop trough nested objects until no longer nested
       } else if (object1[key] === object2[key]) {
         final = true;
@@ -57,6 +66,7 @@ const eqObjects = function(object1, object2) {
     return false;
   }
 };
+module.exports = eqObjects;
 
 // assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true)
 // console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }))
