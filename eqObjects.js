@@ -28,13 +28,3 @@ const eqObjects = function(object1, object2) {
 };
 module.exports = eqObjects;
 
-
-
-// assertEqual(eqObjects(ab, ba), true);
-// assertEqual(eqObjects(ab, abc), false);
-// assertEqual(eqObjects(cd, dc), true);
-// assertEqual(eqObjects(cd, cd2), false);
-// assertEqual(eqObjects(a, eb), false);
-// assertEqual(eqObjects(a, b), false);
-// assertEqual(eqObjects(test1, test2), true);
-// assertEqual(eqObjects(test1, test3), false);
